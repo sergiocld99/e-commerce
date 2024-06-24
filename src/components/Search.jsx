@@ -13,7 +13,10 @@ const Search = ({onSearch}) => {
 
   // acciones
   const performSearch = () => onSearch(input)
-  const clearInput = () => setInput("")
+  const clearInput = () => {
+    setInput("")
+    onSearch("")
+  }
   
   return (
     <View style={styles.container}>
