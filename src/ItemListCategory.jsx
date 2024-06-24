@@ -5,6 +5,7 @@ import Header from './components/Header'
 
 // data
 import allProducts from "./data/products.json"
+import ProductItem from './components/ProductItem'
 
 const ItemListCategory = ({category}) => {
   // estados
@@ -24,7 +25,7 @@ const ItemListCategory = ({category}) => {
       <Search onSearch={setQuery} />
       <View style={styles.content} >
         <FlatList data={products}
-          renderItem={({item}) => <Text>{item.title}</Text> }
+          renderItem={({item}) => <ProductItem item={item} /> }
           keyExtractor={item => item.id}
         />
       </View>

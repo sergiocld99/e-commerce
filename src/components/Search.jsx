@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 10,
     flexDirection: 'row',
-    gap: 10
+    gap: 10,
+    marginHorizontal: 50
   },
 
   input: {
