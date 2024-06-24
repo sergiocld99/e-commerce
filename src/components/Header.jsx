@@ -4,8 +4,8 @@ import React from 'react'
 // Componente Encabezado, que recibe el título a mostrar por props
 const Header = ({title}) => {
   return (
-    <View style={{paddingVertical: 12}}>
-      <Text style={{textAlign: 'center', fontSize: 24, fontWeight: 'bold'}}>{title}</Text>
+    <View style={{paddingTop: 30, paddingBottom: 12, marginBottom: 10, backgroundColor: '#44aa44'}}>
+      <Text style={{textAlign: 'center', fontSize: 24, fontWeight: 'bold', fontStyle: 'italic'}}>{title}</Text>
     </View>
   )
 }

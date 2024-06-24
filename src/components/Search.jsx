@@ -53,7 +53,8 @@ const Search = ({onSearch}) => {
 const styles = StyleSheet.create({
   rootContainer: {
     alignItems: 'center',
-    gap: 10
+    gap: 10,
+    marginBottom: 10
   },
   inputContainer: {
     borderWidth: 2,

@@ -35,7 +35,7 @@ const ItemListCategory = ({category}) => {
 
 const styles = StyleSheet.create({
   content: {
-    marginVertical: 10
+    
   }
 })
 
