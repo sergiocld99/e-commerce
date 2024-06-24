@@ -1,12 +1,15 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Pressable, Image } from 'react-native'
 import React from 'react'
 
 const ProductItem = ({item}) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{item.title}</Text>
-      <Text>{item.description}</Text>
-    </View>
+    <Pressable style={styles.container}>
+      <Image style={styles.img} resizeMode='cover' source={{uri: item.images[0]}} />
+      <View>
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={{marginEnd: 20, textAlign: 'justify'}}>{item.description}</Text>
+      </View>
+    </Pressable>
   )
 }
 
@@ -19,10 +22,17 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5,
         paddingVertical: 4,
         marginVertical: 4,
-        backgroundColor: 'lightgray'
+        backgroundColor: 'lightgray',
+        flexDirection: 'row',
+        gap: 10
     },
     title: {
         fontWeight: 'bold'
+    },
+    img: {
+      width: 30,
+      height: 60,
+      alignSelf: 'center'
     }
 })
 
