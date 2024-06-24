@@ -5,9 +5,9 @@ const ProductItem = ({item}) => {
   return (
     <Pressable style={styles.container}>
       <Image style={styles.img} resizeMode='cover' source={{uri: item.images[0]}} />
-      <View>
+      <View style={{width: '90%'}}>
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={{marginEnd: 20, textAlign: 'justify'}}>{item.description}</Text>
+        <Text style={{marginEnd: 10, textAlign: 'justify'}}>{item.description}</Text>
       </View>
     </Pressable>
   )

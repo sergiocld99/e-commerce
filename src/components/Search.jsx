@@ -10,31 +10,52 @@ import { Entypo } from '@expo/vector-icons';
 const Search = ({onSearch}) => {
   // estado del input
   const [input, setInput] = useState("")
+  const [error, setError] = useState("")
 
   // acciones
-  const performSearch = () => onSearch(input)
+  const performSearch = () => {
+    const expr = /\d/;  // contiene decimal
+    if (expr.test(input)) {
+      setError("Numbers not allowed")
+    } else {
+      setError("")
+      onSearch(input)
+    }
+    
+  }
+
   const clearInput = () => {
     setInput("")
+    setError("")
     onSearch("")
   }
   
   return (
-    <View style={styles.container}>
-      <TextInput style={styles.input} value={input} 
-        onChangeText={setInput} placeholder='Search product...'
-      />
-      <Pressable onPress={performSearch} >
-        <AntDesign name="search1" size={24} color="black" />
-      </Pressable>
-      <Pressable onPress={clearInput} >
-        <Entypo name="cross" size={24} color="black" />
-      </Pressable>
+    <View style={styles.rootContainer}>
+      <View style={styles.inputContainer}>
+        <TextInput style={styles.input} value={input} 
+          onChangeText={setInput} placeholder='Search product...'
+        />
+        <Pressable onPress={performSearch} >
+          <AntDesign name="search1" size={24} color="black" />
+        </Pressable>
+        <Pressable onPress={clearInput} >
+          <Entypo name="cross" size={24} color="black" />
+        </Pressable>
+      </View>
+
+      {error ? <Text style={{color: 'red'}}>{error}</Text> : null }
     </View>
+    
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
+  rootContainer: {
+    alignItems: 'center',
+    gap: 10
+  },
+  inputContainer: {
     borderWidth: 2,
     borderColor: 'green',
     borderRadius: 20,
