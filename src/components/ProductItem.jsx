@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, Pressable, Image } from 'react-native'
 import React from 'react'
 
-const ProductItem = ({item}) => {
+const ProductItem = ({item, setProductId}) => {
   return (
-    <Pressable style={styles.container}>
+    <Pressable style={styles.container} onPress={() => setProductId(item.id)}>
       <Image style={styles.img} resizeMode='center' source={{uri: item.images[0]}} />
       <View style={{width: '80%'}}>
         <Text style={styles.title}>{item.title}</Text>

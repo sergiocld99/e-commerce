@@ -10,7 +10,7 @@ import { AntDesign } from '@expo/vector-icons';
 import allProducts from "../data/products.json"
 import ProductItem from '../components/ProductItem'
 
-const ItemListCategory = ({category, onBackPressed}) => {
+const ItemListCategory = ({category, onBackPressed, onProductPressed}) => {
   // estados
   const [query, setQuery] = useState("")
   const [products, setProducts] = useState([])
@@ -34,7 +34,7 @@ const ItemListCategory = ({category, onBackPressed}) => {
       
       <View >
         <FlatList data={products}
-          renderItem={({item}) => <ProductItem item={item} /> }
+          renderItem={({item}) => <ProductItem item={item} setProductId={() => onProductPressed(item.id)} /> }
           keyExtractor={item => item.id}
         />
       </View>
