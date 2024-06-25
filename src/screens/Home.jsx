@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import allCategories from "../data/categories.json";
 import Header from "../components/Header";
 
-const Home = ({onSelectCategory}) => {
+const Home = ({navigation}) => {
   const [categories, setCategories] = useState(allCategories);
 
   return (
@@ -13,7 +13,7 @@ const Home = ({onSelectCategory}) => {
       <Header title={"Categories"} />
       <FlatList
         data={categories}
-        renderItem={({ item }) => <Pressable onPress={() => onSelectCategory(item)}>
+        renderItem={({ item }) => <Pressable onPress={() => navigation.navigate("ItemListCategory", {category: item})}>
           <Text style={styles.category}>{item}</Text>
         </Pressable> }
         keyExtractor={(item) => item}

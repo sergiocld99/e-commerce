@@ -4,6 +4,7 @@ import Home from "./src/screens/Home";
 import { useState } from "react";
 import { useFonts } from "expo-font";
 import ItemDetail from "./src/screens/ItemDetail";
+import Navigator from "./src/navigation/Navigator";
 
 export default function App() {
   const [category, setCategory] = useState("");
@@ -16,18 +17,7 @@ export default function App() {
   if (!fontsLoaded) return null
 
   return (
-    <View style={styles.container}>
-      {!category ? (
-        <Home onSelectCategory={setCategory} />
-      ) : !productId ? (
-        <ItemListCategory category={category} 
-          onBackPressed={() => setCategory("")}
-          onProductPressed={setProductId} 
-        />
-      ) : (
-        <ItemDetail productId={productId} setProductId={setProductId} />
-      ) }
-    </View>
+    <Navigator />
   );
 }
 

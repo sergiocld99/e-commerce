@@ -10,10 +10,11 @@ import { AntDesign } from '@expo/vector-icons';
 import allProducts from "../data/products.json"
 import ProductItem from '../components/ProductItem'
 
-const ItemListCategory = ({category, onBackPressed, onProductPressed}) => {
+const ItemListCategory = ({navigation, route}) => {
   // estados
   const [query, setQuery] = useState("")
   const [products, setProducts] = useState([])
+  const {category} = route.params
 
   // filtrado según categoría y query
   useEffect(() => {
@@ -26,15 +27,12 @@ const ItemListCategory = ({category, onBackPressed, onProductPressed}) => {
     <View>
       <Header title={category || "Products"} />
       <View style={{flexDirection: 'row', width: '100%', marginHorizontal: 20, gap: 20}}>
-        <Pressable onPress={onBackPressed}>
-          <AntDesign name="arrowleft" size={24} color="black" style={{marginTop: 15}} />
-        </Pressable>
         <Search onSearch={setQuery} />
       </View>
       
       <View >
         <FlatList data={products}
-          renderItem={({item}) => <ProductItem item={item} setProductId={onProductPressed} /> }
+          renderItem={({item}) => <ProductItem item={item} setProductId={() => navigation.navigate("ItemDetail", {productId: item.id})} /> }
           keyExtractor={item => item.id}
         />
       </View>

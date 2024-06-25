@@ -8,9 +8,10 @@ import { AntDesign } from '@expo/vector-icons';
 import allProducts from '../data/products.json'
 import Header from '../components/Header'
 
-const ItemDetail = ({productId, setProductId}) => {
+const ItemDetail = ({navigation, route}) => {
   const [product, setProduct] = useState(null)
   const [portrait, setPortrait] = useState(false)
+  const {productId} = route.params
 
   // orientacion
   const {width, height} = useWindowDimensions()
@@ -28,9 +29,6 @@ const ItemDetail = ({productId, setProductId}) => {
   return (
     <View style={{width: '100%'}}>
       <Header title={"Detail"} />
-      <Pressable onPress={() => setProductId("")}>
-        <AntDesign name="arrowleft" size={24} color="black" style={{marginTop: 15, alignSelf: 'center'}} />
-      </Pressable>
 
       {!product ? null : portrait ? (
         <View style={{marginHorizontal: 20, gap: 10}}>
