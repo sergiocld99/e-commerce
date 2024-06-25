@@ -1,11 +1,10 @@
 import { View, Text, StyleSheet, Pressable, Image } from 'react-native'
 import React from 'react'
 
-const ProductItem = ({item, setProductId}) => {
+const ProductItem = ({item, navigator}) => {
   return (
     <Pressable style={styles.container} onPress={() => {
-      setProductId(item.id)
-      console.log("Setting ID: ", item.id)
+      navigator.navigate("ItemDetail", {productId: item.id})
     }}>
       <Image style={styles.img} resizeMode='center' source={{uri: item.images[0]}} />
       <View style={{width: '80%'}}>

@@ -28,7 +28,9 @@ const ItemDetail = ({navigation, route}) => {
 
   return (
     <View style={{width: '100%'}}>
-      <Header title={"Detail"} />
+      <Pressable onPress={() => navigation.navigate("ItemListCategory", {category: product.category})}>
+        <AntDesign name="arrowleft" size={24} color="black" style={{marginTop: 15, alignSelf: 'center'}} />
+      </Pressable>
 
       {!product ? null : portrait ? (
         <View style={{marginHorizontal: 20, gap: 10}}>

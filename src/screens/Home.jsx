@@ -10,7 +10,6 @@ const Home = ({navigation}) => {
 
   return (
     <View style={{ width: "100%" }}>
-      <Header title={"Categories"} />
       <FlatList
         data={categories}
         renderItem={({ item }) => <Pressable onPress={() => navigation.navigate("ItemListCategory", {category: item})}>

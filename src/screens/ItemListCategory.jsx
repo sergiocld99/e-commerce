@@ -25,14 +25,16 @@ const ItemListCategory = ({navigation, route}) => {
 
   return (
     <View>
-      <Header title={category || "Products"} />
       <View style={{flexDirection: 'row', width: '100%', marginHorizontal: 20, gap: 20}}>
+        <Pressable onPress={() => navigation.navigate("Home")}>
+          <AntDesign name="arrowleft" size={24} color="black" style={{marginTop: 15}} />
+        </Pressable>
         <Search onSearch={setQuery} />
       </View>
       
       <View >
         <FlatList data={products}
-          renderItem={({item}) => <ProductItem item={item} setProductId={() => navigation.navigate("ItemDetail", {productId: item.id})} /> }
+          renderItem={({item}) => <ProductItem item={item} navigator={navigation} /> }
           keyExtractor={item => item.id}
         />
       </View>
