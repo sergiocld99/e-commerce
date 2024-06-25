@@ -34,7 +34,7 @@ const ItemListCategory = ({category, onBackPressed, onProductPressed}) => {
       
       <View >
         <FlatList data={products}
-          renderItem={({item}) => <ProductItem item={item} setProductId={() => onProductPressed(item.id)} /> }
+          renderItem={({item}) => <ProductItem item={item} setProductId={onProductPressed} /> }
           keyExtractor={item => item.id}
         />
       </View>

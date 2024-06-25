@@ -3,7 +3,10 @@ import React from 'react'
 
 const ProductItem = ({item, setProductId}) => {
   return (
-    <Pressable style={styles.container} onPress={() => setProductId(item.id)}>
+    <Pressable style={styles.container} onPress={() => {
+      setProductId(item.id)
+      console.log("Setting ID: ", item.id)
+    }}>
       <Image style={styles.img} resizeMode='center' source={{uri: item.images[0]}} />
       <View style={{width: '80%'}}>
         <Text style={styles.title}>{item.title}</Text>
