@@ -9,9 +9,8 @@ import Header from '../components/Header'
 
 const Stack = createNativeStackNavigator()
 
-const Navigator = () => {
+const ShopNavigator = () => {
   return (
-    <NavigationContainer>
       <Stack.Navigator
         initialRouteName='Home'
         screenOptions={
@@ -28,8 +27,7 @@ const Navigator = () => {
         <Stack.Screen name="ItemListCategory" component={ItemListCategory} />
         <Stack.Screen name="ItemDetail" component={ItemDetail} />
       </Stack.Navigator>
-    </NavigationContainer>
   )
 }
 
-export default Navigator
+export default ShopNavigator
