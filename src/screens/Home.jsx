@@ -24,6 +24,7 @@ const Home = ({onSelectCategory}) => {
 
 const styles = StyleSheet.create({
   category: {
+    fontFamily: 'Josefin',
     textAlign: "center",
     fontSize: 24,
     borderWidth: 2,
