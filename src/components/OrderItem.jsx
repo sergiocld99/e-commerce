@@ -18,7 +18,7 @@ const OrderItem = ({item}) => {
         <Text style={{fontWeight: 'bold'}}>${total}</Text>
       </View>
       <Pressable onPress={() => {}}>
-        <Feather name="trash" size={24} color="black" />
+        <Feather name="search" size={24} color="black" />
       </Pressable>
      
     </View>

@@ -2,6 +2,8 @@ import { StyleSheet } from "react-native";
 import { useState } from "react";
 import { useFonts } from "expo-font";
 import TabNavigator from "./src/navigation/TabNavigator";
+import Store from "./src/store/Store";
+import { Provider } from "react-redux";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -11,7 +13,9 @@ export default function App() {
   if (!fontsLoaded) return null
 
   return (
-    <TabNavigator />
+    <Provider store={Store}>
+      <TabNavigator />
+    </Provider>
   );
 }
 

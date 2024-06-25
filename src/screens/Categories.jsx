@@ -4,18 +4,21 @@ import React, { useState } from "react";
 // data
 import allCategories from "../data/categories.json";
 import Header from "../components/Header";
+import Counter from "../components/Counter";
 
-const Home = ({navigation}) => {
+const Categories = ({navigation}) => {
   const [categories, setCategories] = useState(allCategories);
 
   return (
-    <View style={{ width: "100%", backgroundColor: '#aaffaa', flex: 1, paddingTop: 10 }}>
+    <View style={{ width: "100%", backgroundColor: '#aaffaa', flex: 1 }}>
+      <Counter />
       <FlatList
         data={categories}
         renderItem={({ item }) => <Pressable onPress={() => navigation.navigate("ItemListCategory", {category: item})}>
           <Text style={styles.category}>{item}</Text>
         </Pressable> }
         keyExtractor={(item) => item}
+        style={{paddingTop: 12}}
       />
     </View>
   );
@@ -34,4 +37,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default Categories;
