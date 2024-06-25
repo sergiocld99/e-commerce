@@ -1,12 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Search from './src/components/Search';
-import ItemListCategory from './src/ItemListCategory';
+import { StyleSheet, View } from "react-native";
+import ItemListCategory from "./src/screens/ItemListCategory";
+import Home from "./src/screens/Home";
+import { useState } from "react";
 
 export default function App() {
+  const [category, setCategory] = useState("");
+
   return (
     <View style={styles.container}>
-      <ItemListCategory />
+      {!category ? (
+        <Home onSelectCategory={setCategory} />
+      ) : (
+        <ItemListCategory category={category} onBackPressed={() => setCategory("")} />
+      )}
     </View>
   );
 }
@@ -14,8 +20,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#aaffaa',
-    alignItems: 'center',
-    justifyContent: 'start'
+    backgroundColor: "#aaffaa",
+    alignItems: "center",
+    justifyContent: "start",
   },
 });

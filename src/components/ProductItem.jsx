@@ -4,8 +4,8 @@ import React from 'react'
 const ProductItem = ({item}) => {
   return (
     <Pressable style={styles.container}>
-      <Image style={styles.img} resizeMode='cover' source={{uri: item.images[0]}} />
-      <View style={{width: '90%'}}>
+      <Image style={styles.img} resizeMode='center' source={{uri: item.images[0]}} />
+      <View style={{width: '80%'}}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={{marginEnd: 10, textAlign: 'justify'}}>{item.description}</Text>
       </View>
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     img: {
-      width: 30,
+      width: 60,
       height: 60,
       alignSelf: 'center'
     }

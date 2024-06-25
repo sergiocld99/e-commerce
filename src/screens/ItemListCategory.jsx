@@ -1,13 +1,16 @@
-import { View, Text, StyleSheet, FlatList } from 'react-native'
+import { View, Text, StyleSheet, FlatList, Pressable } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import Search from './components/Search'
-import Header from './components/Header'
+import Search from '../components/Search'
+import Header from '../components/Header'
+
+// icons
+import { AntDesign } from '@expo/vector-icons';
 
 // data
-import allProducts from "./data/products.json"
-import ProductItem from './components/ProductItem'
+import allProducts from "../data/products.json"
+import ProductItem from '../components/ProductItem'
 
-const ItemListCategory = ({category}) => {
+const ItemListCategory = ({category, onBackPressed}) => {
   // estados
   const [query, setQuery] = useState("")
   const [products, setProducts] = useState([])
@@ -22,8 +25,14 @@ const ItemListCategory = ({category}) => {
   return (
     <View>
       <Header title={category || "Products"} />
-      <Search onSearch={setQuery} />
-      <View style={styles.content} >
+      <View style={{flexDirection: 'row', width: '100%', marginHorizontal: 20, gap: 20}}>
+        <Pressable onPress={onBackPressed}>
+          <AntDesign name="arrowleft" size={24} color="black" style={{marginTop: 15}} />
+        </Pressable>
+        <Search onSearch={setQuery} />
+      </View>
+      
+      <View >
         <FlatList data={products}
           renderItem={({item}) => <ProductItem item={item} /> }
           keyExtractor={item => item.id}
@@ -32,11 +41,5 @@ const ItemListCategory = ({category}) => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  content: {
-    
-  }
-})
 
 export default ItemListCategory
