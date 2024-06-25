@@ -9,7 +9,7 @@ const Home = ({navigation}) => {
   const [categories, setCategories] = useState(allCategories);
 
   return (
-    <View style={{ width: "100%" }}>
+    <View style={{ width: "100%", backgroundColor: '#aaffaa', flex: 1, paddingTop: 10 }}>
       <FlatList
         data={categories}
         renderItem={({ item }) => <Pressable onPress={() => navigation.navigate("ItemListCategory", {category: item})}>

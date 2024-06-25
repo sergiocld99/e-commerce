@@ -27,7 +27,7 @@ const ItemDetail = ({navigation, route}) => {
   }, [width, height])
 
   return (
-    <View style={{width: '100%'}}>
+    <View style={{width: '100%', backgroundColor: '#aaffaa', flex: 1}}>
       <Pressable onPress={() => navigation.navigate("ItemListCategory", {category: product.category})}>
         <AntDesign name="arrowleft" size={24} color="black" style={{marginTop: 15, alignSelf: 'center'}} />
       </Pressable>

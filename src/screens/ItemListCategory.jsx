@@ -24,8 +24,8 @@ const ItemListCategory = ({navigation, route}) => {
   }, [category, query])
 
   return (
-    <View>
-      <View style={{flexDirection: 'row', width: '100%', marginHorizontal: 20, gap: 20}}>
+    <View style={{backgroundColor: '#aaffaa', flex: 1}}>
+      <View style={{flexDirection: 'row', width: '100%', marginHorizontal: 20, gap: 20, marginTop: 12}}>
         <Pressable onPress={() => navigation.navigate("Home")}>
           <AntDesign name="arrowleft" size={24} color="black" style={{marginTop: 15}} />
         </Pressable>
