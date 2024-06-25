@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList, Pressable } from 'react-native'
+import { View, Text, StyleSheet, FlatList, Pressable, useWindowDimensions } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Search from '../components/Search'
 import Header from '../components/Header'
