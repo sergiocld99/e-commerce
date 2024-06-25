@@ -8,6 +8,7 @@ import CartNavigator from './CartNavigator'
 // icons
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import OrdersNavigator from './OrdersNavigator'
 
 const Tab = createBottomTabNavigator()
 
@@ -28,6 +29,13 @@ const TabNavigator = () => {
           tabBarIcon: ({focused}) => (
             <View>
               <MaterialIcons name="shopping-cart" size={24} color={focused ? "green" : "gray"} />
+            </View>
+          )
+        }} />
+        <Tab.Screen name='OrdersTab' component={OrdersNavigator} options={{
+          tabBarIcon: ({focused}) => (
+            <View>
+              <MaterialCommunityIcons name="order-bool-ascending" size={24} color={focused ? "green" : "gray"} />
             </View>
           )
         }} />
