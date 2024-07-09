@@ -6,22 +6,22 @@ import Header from '../components/Header'
 // icons
 import { AntDesign } from '@expo/vector-icons';
 
-// data
-import allProducts from "../data/products.json"
 import ProductItem from '../components/ProductItem'
+import { useSelector } from 'react-redux';
 
 const ItemListCategory = ({navigation, route}) => {
   // estados
   const [query, setQuery] = useState("")
   const [products, setProducts] = useState([])
-  const {category} = route.params
 
-  // filtrado según categoría y query
+  // filtrado según categoría desde Store
+  const filteredProductsOfCategory = useSelector(state => state.shopSlice.value.filteredProductsOfCategory)
+
+  // filtrado según query
   useEffect(() => {
-    const filtered_1 = category ? allProducts.filter(p => p.category === category) : allProducts
-    const filtered_2 = filtered_1.filter(p => p.title.includes(query))
-    setProducts(filtered_2)
-  }, [category, query])
+    const filtered = filteredProductsOfCategory.filter(p => p.title.includes(query))
+    setProducts(filtered)
+  }, [filteredProductsOfCategory, query])
 
   return (
     <View style={{backgroundColor: '#aaffaa', flex: 1}}>

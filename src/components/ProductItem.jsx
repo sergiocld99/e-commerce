@@ -1,10 +1,18 @@
 import { View, Text, StyleSheet, Pressable, Image } from 'react-native'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { setProductIdSelected } from '../features/shop/shopSlice'
 
 const ProductItem = ({item, navigator}) => {
+  const dispatch = useDispatch()
+  
   return (
     <Pressable style={styles.container} onPress={() => {
-      navigator.navigate("ItemDetail", {productId: item.id})
+      // Establece el ID de producto en Store para poder cargarlo
+      dispatch(setProductIdSelected(item.id))
+
+      // El título de la pantalla a mostrar es "Detail" para todo producto
+      navigator.navigate("ItemDetail")
     }}>
       <Image style={styles.img} resizeMode='center' source={{uri: item.images[0]}} />
       <View style={{width: '80%'}}>

@@ -7,11 +7,12 @@ import { AntDesign } from '@expo/vector-icons';
 // data
 import allProducts from '../data/products.json'
 import Header from '../components/Header'
+import { useSelector } from 'react-redux';
 
 const ItemDetail = ({navigation, route}) => {
   const [product, setProduct] = useState(null)
   const [portrait, setPortrait] = useState(false)
-  const {productId} = route.params
+  const productId = useSelector(state => state.shopSlice.value.productIdSelected)
 
   // orientacion
   const {width, height} = useWindowDimensions()
@@ -28,7 +29,7 @@ const ItemDetail = ({navigation, route}) => {
 
   return (
     <View style={{width: '100%', backgroundColor: '#aaffaa', flex: 1}}>
-      <Pressable onPress={() => navigation.navigate("ItemListCategory", {category: product.category})}>
+      <Pressable onPress={() => navigation.navigate("ItemListCategory", {category: product?.category || ''})}>
         <AntDesign name="arrowleft" size={24} color="black" style={{marginTop: 15, alignSelf: 'center'}} />
       </Pressable>
 
