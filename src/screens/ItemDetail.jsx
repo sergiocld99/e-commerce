@@ -4,24 +4,22 @@ import React, { useEffect, useState } from 'react'
 // icons
 import { AntDesign } from '@expo/vector-icons';
 
-// data
-import allProducts from '../data/products.json'
-import Header from '../components/Header'
 import { useSelector } from 'react-redux';
+import { useGetProductByIdQuery } from '../services/shopService';
 
 const ItemDetail = ({navigation, route}) => {
   const [product, setProduct] = useState(null)
   const [portrait, setPortrait] = useState(false)
   const productId = useSelector(state => state.shopSlice.value.productIdSelected)
+  const {data, isLoading, error} = useGetProductByIdQuery(productId)
 
   // orientacion
   const {width, height} = useWindowDimensions()
 
-  // retrieve product
   useEffect(() => {
-    const found = allProducts.find(p => p.id === productId)
-    setProduct(found)
-  }, [productId])
+    console.log(data)
+    if (data) setProduct(data)
+  }, [productId, data])
 
   useEffect(() => {
     setPortrait(height > width)

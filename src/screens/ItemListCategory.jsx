@@ -8,19 +8,28 @@ import { AntDesign } from '@expo/vector-icons';
 
 import ProductItem from '../components/ProductItem'
 import { useSelector } from 'react-redux';
+import { useGetProductsOfCategoryQuery, useGetProductsQuery } from '../services/shopService';
 
 const ItemListCategory = ({navigation, route}) => {
   // estados
   const [query, setQuery] = useState("")
   const [products, setProducts] = useState([])
+  
+  // categoría obtenida desde Store
+  const category = useSelector(state => state.shopSlice.value.categorySelected)
 
-  // filtrado según categoría desde Store
-  const filteredProductsOfCategory = useSelector(state => state.shopSlice.value.filteredProductsOfCategory)
+  // ex: filtrado según categoría desde Store
+  //const filteredProductsOfCategory = useSelector(state => state.shopSlice.value.filteredProductsOfCategory)
+
+  // filtrado según categoría desde Firebase
+  const {data: filteredProductsOfCategory, isLoading, error} = useGetProductsOfCategoryQuery(category)
 
   // filtrado según query
   useEffect(() => {
-    const filtered = filteredProductsOfCategory.filter(p => p.title.includes(query))
-    setProducts(filtered)
+    if (filteredProductsOfCategory){
+      const filtered = filteredProductsOfCategory.filter(p => p.title.includes(query))
+      setProducts(filtered)
+    }
   }, [filteredProductsOfCategory, query])
 
   return (

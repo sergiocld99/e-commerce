@@ -3,10 +3,16 @@ import React, { useEffect, useState } from "react";
 import Counter from "../components/Counter";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategorySelected } from "../features/shop/shopSlice";
+import { useGetCategoriesQuery } from "../services/shopService";
 
 const Categories = ({navigation}) => {
-  const categories = useSelector(state => state.shopSlice.value.categories)
+  // Former use: Local Redux
+  //const categories = useSelector(state => state.shopSlice.value.categories)
   const dispatch = useDispatch()
+
+  // RTK Hook {data, isLoading, error}
+  // alias categories for data
+  const {data: categories, isLoading, error} = useGetCategoriesQuery()
 
   return (
     <View style={{ width: "100%", backgroundColor: '#aaffaa', flex: 1 }}>
