@@ -1,14 +1,14 @@
 import { View, Text, StyleSheet, FlatList, Pressable, useWindowDimensions } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import Search from '../components/Search'
-import Header from '../components/Header'
+import Search from '../../components/Search'
+import Header from '../../components/Header'
+import ProductItem from '../../components/ProductItem'
+import { useGetProductsOfCategoryQuery, useGetProductsQuery } from '../../services/shopService';
 
 // icons
 import { AntDesign } from '@expo/vector-icons';
 
-import ProductItem from '../components/ProductItem'
 import { useSelector } from 'react-redux';
-import { useGetProductsOfCategoryQuery, useGetProductsQuery } from '../services/shopService';
 
 const ItemListCategory = ({navigation, route}) => {
   // estados

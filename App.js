@@ -4,7 +4,7 @@ import { useFonts } from "expo-font";
 import TabNavigator from "./src/navigation/TabNavigator";
 import Store from "./src/store/Store";
 import { Provider, useSelector } from "react-redux";
-import AuthNavigator from "./src/navigation/AuthNavigator";
+import AuthStack from "./src/navigation/AuthStack";
 import { NavigationContainer } from "@react-navigation/native";
 import MainNavigator from "./src/navigation/MainNavigator";
 

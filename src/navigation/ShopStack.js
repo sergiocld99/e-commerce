@@ -1,9 +1,9 @@
 import React from 'react'
-import ItemListCategory from '../screens/ItemListCategory'
-import ItemDetail from '../screens/ItemDetail'
+import ItemListCategory from '../screens/shop/ItemListCategory'
+import ItemDetail from '../screens/shop/ItemDetail'
+import Categories from '../screens/shop/Categories'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Header from '../components/Header'
-import Categories from '../screens/Categories'
 
 const Stack = createNativeStackNavigator()
 

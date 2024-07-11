@@ -1,11 +1,11 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import InputForm from '../components/InputForm'
-import SubmitButton from '../components/SubmitButton'
-import { useSignUpMutation } from '../services/authService'
+import InputForm from '../../components/InputForm'
+import BigButton from '../../components/BigButton'
+import { useSignUpMutation } from '../../services/authService'
 import { useDispatch } from 'react-redux'
-import { setUser } from '../features/auth/authSlice'
-import { signUpSchema } from '../validations/signUpSchema'
+import { setUser } from '../../features/auth/authSlice'
+import { signUpSchema } from '../../validations/signUpSchema'
 
 const SignUp = ({navigation}) => {
   // estados
@@ -71,7 +71,7 @@ const SignUp = ({navigation}) => {
         <InputForm label={"Email"} onChange={setEmail} error={errorEmail} />
         <InputForm label={"Password"} onChange={setPassword} error={errorPw} isSecure={true} />
         <InputForm label={"Confirm Password"} onChange={setConfirmPw} error={errorConfirmPw} isSecure={true} />
-        <SubmitButton onPress={onSubmit} title={"Send"} />
+        <BigButton onPress={onSubmit} title={"Send"} />
         <Text>Do you already have an account?</Text>
         <Pressable onPress={() => navigation.navigate("Login")}>
           <Text style={styles.signup}>Login</Text>

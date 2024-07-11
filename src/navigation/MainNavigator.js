@@ -4,7 +4,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { NavigationContainer } from "@react-navigation/native"
 import TabNavigator from "./TabNavigator"
-import AuthNavigator from "./AuthNavigator"
+import AuthStack from "./AuthStack"
 import { useSelector } from "react-redux"
 
 const MainNavigator = () => {
@@ -14,7 +14,7 @@ const MainNavigator = () => {
     <NavigationContainer>
       {/* Mostrar pantalla de logueo o tabs segun estado de autenticacion */}
       {
-        user ? <TabNavigator /> : <AuthNavigator /> 
+        user ? <TabNavigator /> : <AuthStack /> 
       }
     </NavigationContainer>
   )

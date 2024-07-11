@@ -2,12 +2,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // components
 import Header from "../components/Header";
-import Login from "../screens/Login"
-import SignUp from "../screens/SignUp";
+import Login from "../screens/auth/Login"
+import SignUp from "../screens/auth/SignUp";
 
 const Stack = createNativeStackNavigator()
 
-const AuthNavigator = () => {
+const AuthStack = () => {
   return (
     <Stack.Navigator
       initialRouteName="Login"
@@ -26,4 +26,4 @@ const AuthNavigator = () => {
   )
 }
 
-export default AuthNavigator
+export default AuthStack

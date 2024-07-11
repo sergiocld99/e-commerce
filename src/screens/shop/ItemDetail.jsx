@@ -5,8 +5,9 @@ import React, { useEffect, useState } from 'react'
 import { AntDesign } from '@expo/vector-icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetProductByIdQuery } from '../services/shopService';
-import { addItem } from '../features/cart/cartSlice';
+import { useGetProductByIdQuery } from '../../services/shopService';
+import { addItem } from '../../features/cart/cartSlice';
+import BigButton from '../../components/BigButton';
 
 const ItemDetail = ({navigation, route}) => {
   const [product, setProduct] = useState(null)
@@ -44,9 +45,7 @@ const ItemDetail = ({navigation, route}) => {
           <Text style={{fontWeight: 'bold'}}>{product.title}</Text>
           <Text>{product.description}</Text>
           <Text style={{fontWeight: 'bold', fontSize: 30}}>${product.price}</Text>
-          <Pressable onPress={() => onAddToCart()} style={styles.buy}>
-            <Text style={{fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Add to cart</Text>
-          </Pressable>
+          <BigButton onPress={onAddToCart} title={"Add to cart"} />
         </View>
       ) : (
         <View style={{flexDirection: 'row', height: "75%"}}>
@@ -54,10 +53,8 @@ const ItemDetail = ({navigation, route}) => {
           <View style={{width: "50%", flexDirection: 'column', justifyContent: 'center', height: '75%', gap: 10}}>
             <Text style={{fontWeight: 'bold'}}>{product.title}</Text>
             <Text>{product.description}</Text>
-          <Text style={{fontWeight: 'bold', fontSize: 30}}>${product.price}</Text>
-          <Pressable onPress={() => onAddToCart()} style={styles.buy}>
-            <Text style={{fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Add to cart</Text>
-          </Pressable>
+            <Text style={{fontWeight: 'bold', fontSize: 30}}>${product.price}</Text>
+            <BigButton onPress={onAddToCart} title={"Add to cart"} />
           </View>
         </View>
       ) }

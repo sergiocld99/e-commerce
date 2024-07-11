@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react"
-import SubmitButton from "../components/SubmitButton"
+import BigButton from "../../components/BigButton"
 import { Pressable, StyleSheet, Text, View } from "react-native"
-import InputForm from "../components/InputForm"
+import InputForm from "../../components/InputForm"
 import { useDispatch } from "react-redux"
-import { useLoginMutation } from "../services/authService"
-import { setUser } from "../features/auth/authSlice"
+import { useLoginMutation } from "../../services/authService"
+import { setUser } from "../../features/auth/authSlice"
 
 const Login = ({navigation}) => {
   // estados
@@ -45,7 +45,7 @@ const Login = ({navigation}) => {
         <Text style={styles.title}>Login to start</Text>
         <InputForm label={"Email"} onChange={(text) => setEmail(text.toLowerCase().trim())} error={""} />
         <InputForm label={"Password"} onChange={setPassword} error={errorPw} isSecure={true} />
-        <SubmitButton onPress={onSubmit} title={"Send"} />
+        <BigButton onPress={onSubmit} title={"Send"} />
         <Pressable onPress={() => navigation.navigate("Signup")}>
           <Text style={styles.signup}>Sign Up</Text>
         </Pressable>

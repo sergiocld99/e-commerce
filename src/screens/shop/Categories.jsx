@@ -1,9 +1,9 @@
 import { View, Text, FlatList, StyleSheet, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
-import Counter from "../components/Counter";
+import Counter from "../../components/Counter";
 import { useDispatch, useSelector } from "react-redux";
-import { setCategorySelected } from "../features/shop/shopSlice";
-import { useGetCategoriesQuery } from "../services/shopService";
+import { setCategorySelected } from "../../features/shop/shopSlice";
+import { useGetCategoriesQuery } from "../../services/shopService";
 
 const Categories = ({navigation}) => {
   // Former use: Local Redux
