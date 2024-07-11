@@ -7,7 +7,7 @@ import Categories from '../screens/Categories'
 
 const Stack = createNativeStackNavigator()
 
-const ShopNavigator = () => {
+const ShopStack = () => {
   return (
       <Stack.Navigator
         initialRouteName='Home'
@@ -28,4 +28,4 @@ const ShopNavigator = () => {
   )
 }
 
-export default ShopNavigator
+export default ShopStack

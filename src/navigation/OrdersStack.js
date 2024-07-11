@@ -8,17 +8,19 @@ import Orders from '../screens/Orders'
 
 const Stack = createNativeStackNavigator()
 
-const OrdersNavigator = () => {
+const OrdersStack = () => {
   return (
     <Stack.Navigator
       initialRouteName='Orders'
-      screenOptions={({route}) => ({
-        header: () => <Header title={"Orders"} />
-      })}
+      screenOptions={() => (
+        {
+          header: () => <Header title={"Orders"} />
+        }
+      )}
     >
       <Stack.Screen name='Orders' component={Orders} />
     </Stack.Navigator>
   )
 }
 
-export default OrdersNavigator
+export default OrdersStack
