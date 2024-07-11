@@ -3,6 +3,9 @@
 # dependencies
 node_modules/
 
+# Credentials
+src/keys/
+
 # Expo
 .expo/
 dist/

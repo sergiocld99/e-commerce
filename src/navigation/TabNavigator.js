@@ -16,7 +16,6 @@ const TabNavigator = () => {
   // NavigationContainer solo debe encontrarse en el elemento de mayor jerarquía
   
   return (
-    <NavigationContainer>
       <Tab.Navigator screenOptions={{headerShown: false, tabBarShowLabel: false}}>
         <Tab.Screen name='ShopTab' component={ShopNavigator} options={{
           tabBarIcon: ({focused}) => (
@@ -40,7 +39,6 @@ const TabNavigator = () => {
           )
         }} />
       </Tab.Navigator>
-    </NavigationContainer>
   )
 }
 

@@ -4,6 +4,7 @@ import { baseUrl } from "../db/database";
 
 // define API
 export const shopApi = createApi({
+  reducerPath: 'shopApi',
   baseQuery: fetchBaseQuery({baseUrl: baseUrl}),
   endpoints: (builder) => ( 
     {
@@ -19,7 +20,16 @@ export const shopApi = createApi({
         // Se requiere transformar los campos en un arreglo, y agarrar el elemento 0
         transformResponse: res => Object.values(res)[0]
       }),
-      getCategories: builder.query({query: () => 'categories.json'})
+      getCategories: builder.query({query: () => 'categories.json'}),
+      postOrder: builder.mutation({
+        query: ({...order}) => (
+          {
+            url: 'orders.json',
+            method: 'POST',
+            body: order
+          }
+        )
+      })
     }
   )
 })
@@ -29,5 +39,6 @@ export const {
   useGetProductsQuery, 
   useGetProductsOfCategoryQuery,
   useGetProductByIdQuery, 
-  useGetCategoriesQuery 
+  useGetCategoriesQuery,
+  usePostOrderMutation 
 } = shopApi

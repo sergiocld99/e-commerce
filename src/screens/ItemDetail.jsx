@@ -4,17 +4,24 @@ import React, { useEffect, useState } from 'react'
 // icons
 import { AntDesign } from '@expo/vector-icons';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useGetProductByIdQuery } from '../services/shopService';
+import { addItem } from '../features/cart/cartSlice';
 
 const ItemDetail = ({navigation, route}) => {
   const [product, setProduct] = useState(null)
   const [portrait, setPortrait] = useState(false)
   const productId = useSelector(state => state.shopSlice.value.productIdSelected)
   const {data, isLoading, error} = useGetProductByIdQuery(productId)
+  const dispatch = useDispatch()
 
   // orientacion
   const {width, height} = useWindowDimensions()
+
+  // funcion de agregado a carrito
+  const onAddToCart = () => {
+    dispatch(addItem({...product, quantity: 1}))
+  }
 
   useEffect(() => {
     console.log(data)
@@ -37,8 +44,8 @@ const ItemDetail = ({navigation, route}) => {
           <Text style={{fontWeight: 'bold'}}>{product.title}</Text>
           <Text>{product.description}</Text>
           <Text style={{fontWeight: 'bold', fontSize: 30}}>${product.price}</Text>
-          <Pressable style={styles.buy}>
-            <Text style={{fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Buy</Text>
+          <Pressable onPress={() => onAddToCart()} style={styles.buy}>
+            <Text style={{fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Add to cart</Text>
           </Pressable>
         </View>
       ) : (
@@ -48,8 +55,8 @@ const ItemDetail = ({navigation, route}) => {
             <Text style={{fontWeight: 'bold'}}>{product.title}</Text>
             <Text>{product.description}</Text>
           <Text style={{fontWeight: 'bold', fontSize: 30}}>${product.price}</Text>
-          <Pressable style={styles.buy}>
-            <Text style={{fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Buy</Text>
+          <Pressable onPress={() => onAddToCart()} style={styles.buy}>
+            <Text style={{fontWeight: 'bold', fontSize: 20, textAlign: 'center'}}>Add to cart</Text>
           </Pressable>
           </View>
         </View>
@@ -73,8 +80,9 @@ const styles = StyleSheet.create({
     borderColor: 'brown',
     borderRadius: 10,
     paddingHorizontal: 5,
+    paddingVertical: 4,
     backgroundColor: 'yellow',
-    width: 80
+    width: 200
   }
 })
 

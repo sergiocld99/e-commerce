@@ -10,7 +10,7 @@ const CartItem = ({item}) => {
       <View style={{width: "85%"}}>
         <Text style={{fontWeight: 'bold'}}>{item.title}</Text>
         <Text>{item.brand}</Text>
-        <Text style={{fontWeight: 'bold'}}>${item.price}</Text>
+        <Text style={{fontWeight: 'bold'}}>${item.quantity} x ${item.price}</Text>
       </View>
       <Pressable onPress={() => {}}>
         <Feather name="trash" size={24} color="black" />

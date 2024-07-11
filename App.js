@@ -3,7 +3,10 @@ import { useState } from "react";
 import { useFonts } from "expo-font";
 import TabNavigator from "./src/navigation/TabNavigator";
 import Store from "./src/store/Store";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
+import AuthNavigator from "./src/navigation/AuthNavigator";
+import { NavigationContainer } from "@react-navigation/native";
+import MainNavigator from "./src/navigation/MainNavigator";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -12,9 +15,10 @@ export default function App() {
 
   if (!fontsLoaded) return null
 
+
   return (
     <Provider store={Store}>
-      <TabNavigator />
+      <MainNavigator />
     </Provider>
   );
 }
