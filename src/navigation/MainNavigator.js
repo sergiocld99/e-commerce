@@ -1,14 +1,25 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
 import { View, Text } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavigationContainer } from "@react-navigation/native"
 import TabNavigator from "./TabNavigator"
 import AuthStack from "./AuthStack"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { useGetProfilePictureQuery } from "../services/shopService"
+import { setProfilePicture } from "../features/auth/authSlice"
 
 const MainNavigator = () => {
-  const user = useSelector(state => state.authSlice.value.user)
+  const {user, localId} = useSelector(state => state.authSlice.value)
+  const dispatch = useDispatch()
+
+  // firebase (usar {} con los nombres exactos)
+  const {data, error, isLoading} = useGetProfilePictureQuery(localId)
+
+  useEffect(() => {
+    if (data) dispatch(setProfilePicture(data.image))
+    else console.log("No se encontro foto de perfil en firebase")
+  }, [data])
 
   return (
     <NavigationContainer>

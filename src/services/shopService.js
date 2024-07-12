@@ -2,7 +2,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "../db/database";
 
-// define API
+// define API for REALTIME DATABASE
 export const shopApi = createApi({
   reducerPath: 'shopApi',
   baseQuery: fetchBaseQuery({baseUrl: baseUrl}),
@@ -29,6 +29,19 @@ export const shopApi = createApi({
             body: order
           }
         )
+      }),
+      // profile picture
+      getProfilePicture: builder.query({
+        query: (localId) => `pfp/${localId}.json`,
+      }),
+      postProfilePicture: builder.mutation({
+        query: ({image, localId}) => (
+          {
+            url: `pfp/${localId}.json`,
+            method: 'PUT',
+            body: {image}
+          }
+        )
       })
     }
   )
@@ -40,5 +53,7 @@ export const {
   useGetProductsOfCategoryQuery,
   useGetProductByIdQuery, 
   useGetCategoriesQuery,
-  usePostOrderMutation 
+  usePostOrderMutation,
+  useGetProfilePictureQuery,
+  usePostProfilePictureMutation
 } = shopApi

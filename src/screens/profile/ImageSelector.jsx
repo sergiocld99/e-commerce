@@ -1,16 +1,21 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import BigButton from '../../components/BigButton'
 
 // picker
 import * as ImagePicker from 'expo-image-picker';
 import { setProfilePicture } from '../../features/auth/authSlice';
+import { usePostOrderMutation, usePostProfilePictureMutation } from '../../services/shopService';
 
 const ImageSelector = ({navigation}) => {
   // estado
   const [image, setImage] = useState(null)
+  const localId = useSelector(state => state.authSlice.value.localId)
   const dispatch = useDispatch()
+
+  // Firebase
+  const [triggerPostPfp, result] = usePostProfilePictureMutation()
 
   // paso 1: verificacion de permisos
   const verifyPermissions = async () => {
@@ -43,6 +48,7 @@ const ImageSelector = ({navigation}) => {
   // paso 3: confirmacion de imagen elegida
   const confirmImage = () => {
     dispatch(setProfilePicture(image))
+    triggerPostPfp({image, localId})
     navigation.goBack()
   }
 

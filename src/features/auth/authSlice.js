@@ -6,7 +6,8 @@ const authSlice = createSlice({
     value: {
       user: null,
       token: null,
-      imageCamera: null
+      imageCamera: null,
+      localId: null
     }
   },
   reducers: {
@@ -14,14 +15,16 @@ const authSlice = createSlice({
       state.value = {
         user: action.payload.data.email,
         token: action.payload.data.idToken,
-        imageCamera: null
+        localId: action.payload.data.localId,
+        imageCamera: null,
       }
     },
     clearUser: (state) => {
       state.value = {
         user: null,
         token: null,
-        imageCamera: null
+        imageCamera: null,
+        localId: null
       }
     },
     setProfilePicture: (state, action) => {
