@@ -25,7 +25,6 @@ const ItemDetail = ({navigation, route}) => {
   }
 
   useEffect(() => {
-    console.log(data)
     if (data) setProduct(data)
   }, [productId, data])
 
