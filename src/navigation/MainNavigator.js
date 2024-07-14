@@ -6,20 +6,26 @@ import { NavigationContainer } from "@react-navigation/native"
 import TabNavigator from "./TabNavigator"
 import AuthStack from "./AuthStack"
 import { useDispatch, useSelector } from "react-redux"
-import { useGetProfilePictureQuery } from "../services/shopService"
-import { setProfilePicture } from "../features/auth/authSlice"
+import { useGetProfilePictureQuery, useGetUserLocationQuery } from "../services/shopService"
+import { setProfilePicture, setUserLocation } from "../features/auth/authSlice"
 
 const MainNavigator = () => {
   const {user, localId} = useSelector(state => state.authSlice.value)
   const dispatch = useDispatch()
 
   // firebase (usar {} con los nombres exactos)
-  const {data, error, isLoading} = useGetProfilePictureQuery(localId)
+  const {data: pfpData} = useGetProfilePictureQuery(localId)
+  const {data: locationData} = useGetUserLocationQuery(localId)
 
   useEffect(() => {
-    if (data) dispatch(setProfilePicture(data.image))
-    else console.log("No se encontro foto de perfil en firebase")
-  }, [data])
+    if (pfpData) dispatch(setProfilePicture(pfpData.image))
+    else if (localId) console.log("No registered profile photo found")
+  }, [pfpData])
+
+  useEffect(() => {
+    if (locationData) dispatch(setUserLocation(locationData))
+      else if (localId) console.log("No registered location found")
+  }, [locationData])
 
   return (
     <NavigationContainer>

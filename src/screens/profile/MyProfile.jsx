@@ -18,6 +18,7 @@ const MyProfile = ({navigation}) => {
         </>
       }
       <BigButton onPress={() => navigation.navigate("Image Selector")} title={"Replace photo"} customWidth={130} />
+      <BigButton onPress={() => navigation.navigate("List Address")} title={"My addresses"} customWidth={130} />
     </View>
   )
 }

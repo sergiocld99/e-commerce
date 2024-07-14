@@ -1,13 +1,11 @@
 import { View, Text, Pressable, StyleSheet, Image, useWindowDimensions } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
-// icons
-import { AntDesign } from '@expo/vector-icons';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetProductByIdQuery } from '../../services/shopService';
 import { addItem } from '../../features/cart/cartSlice';
 import BigButton from '../../components/BigButton';
+import BackButton from '../../components/BackButton';
 
 const ItemDetail = ({navigation, route}) => {
   const [product, setProduct] = useState(null)
@@ -34,9 +32,7 @@ const ItemDetail = ({navigation, route}) => {
 
   return (
     <View style={{width: '100%', backgroundColor: '#aaffaa', flex: 1}}>
-      <Pressable onPress={() => navigation.navigate("ItemListCategory", {category: product?.category || ''})}>
-        <AntDesign name="arrowleft" size={24} color="black" style={{marginTop: 15, alignSelf: 'center'}} />
-      </Pressable>
+      <BackButton navigation={navigation} />
 
       {!product ? null : portrait ? (
         <View style={{marginHorizontal: 20, gap: 10}}>
