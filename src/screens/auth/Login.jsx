@@ -5,6 +5,7 @@ import InputForm from "../../components/InputForm"
 import { useDispatch } from "react-redux"
 import { useLoginMutation } from "../../services/authService"
 import { setUser } from "../../features/auth/authSlice"
+import { insertSession } from "../../db"
 
 const Login = ({navigation}) => {
   // estados
@@ -34,6 +35,16 @@ const Login = ({navigation}) => {
       dispatch(setUser({
         data: result.data
       }))
+
+      // save session to local db
+      insertSession({
+        email: result.data.email,
+        localId: result.data.localId,
+        token: result.data.idToken
+      })
+      .then(res => console.log("Session inserted", res))
+      .catch(err => console.log("Cannot insert session", err.message))
+
     } else if (result.isError) {
       console.log("Inicio de sesion fallido. Revise credenciales")
     }

@@ -1,12 +1,14 @@
 import { StyleSheet } from "react-native";
-import { useState } from "react";
 import { useFonts } from "expo-font";
-import TabNavigator from "./src/navigation/TabNavigator";
 import Store from "./src/store/Store";
-import { Provider, useSelector } from "react-redux";
-import AuthStack from "./src/navigation/AuthStack";
-import { NavigationContainer } from "@react-navigation/native";
+import { Provider } from "react-redux";
 import MainNavigator from "./src/navigation/MainNavigator";
+import { init } from "./src/db";
+
+// db init
+init()
+  .then(() => console.log("DB initialized"))
+  .catch(err => console.log("DB initialization failed", err.message))
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -14,7 +16,6 @@ export default function App() {
   })
 
   if (!fontsLoaded) return null
-
 
   return (
     <Provider store={Store}>

@@ -1,12 +1,21 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
 import React, { useState } from 'react'
 import BigButton from '../../components/BigButton'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearUser } from '../../features/auth/authSlice'
+import { deleteSession } from '../../db'
 
 // "navigation" es el nombre obligatorio del atributo para navegar
 const MyProfile = ({navigation}) => {
   const image = useSelector(state => state.authSlice.value.imageCamera)
+  const dispatch = useDispatch()
 
+  const onLogout = () => {
+    dispatch(clearUser())
+    deleteSession({localId})
+      .then(res => console.log(res))
+  }
+  
   return (
     <View style={styles.container}>
       {
@@ -19,6 +28,7 @@ const MyProfile = ({navigation}) => {
       }
       <BigButton onPress={() => navigation.navigate("Image Selector")} title={"Replace photo"} customWidth={130} />
       <BigButton onPress={() => navigation.navigate("List Address")} title={"My addresses"} customWidth={130} />
+      <BigButton onPress={onLogout} title={"Logout"} customWidth={130} />
     </View>
   )
 }

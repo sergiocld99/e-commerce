@@ -14,10 +14,10 @@ const authSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.value = {
+        ...state.value,
         user: action.payload.data.email,
         token: action.payload.data.idToken,
-        localId: action.payload.data.localId,
-        imageCamera: null,
+        localId: action.payload.data.localId
       };
     },
     clearUser: (state) => {
